@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2014 Tieto Poland Sp. z o.o.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -103,6 +104,14 @@ public:
         uint8_t flags;
         uint8_t reserved[2];
         int32_t sequence; // changes when visible regions can change
+        /**
+         * Date: Mar 5, 2014
+         * Copyright (C) 2014 Tieto Poland Sp. z o.o.
+         *
+         * This is used for synchronize setSize and setPosition. Needed for
+         * resizing window from right side.
+         */
+        Transform requestedTransform;
         Transform transform;
         // the transparentRegion hint is a bit special, it's latched only
         // when we receive a buffer -- this is because it's "content"
