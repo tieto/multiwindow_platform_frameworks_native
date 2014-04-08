@@ -1,5 +1,6 @@
 //
 // Copyright 2010 The Android Open Source Project
+// Copyright 2014 Tieto Poland Sp. z o.o.
 //
 // Provides a shared memory transport for input events.
 //
@@ -96,7 +97,7 @@ size_t InputMessage::size() const {
 // --- InputChannel ---
 
 InputChannel::InputChannel(const String8& name, int fd) :
-        mName(name), mFd(fd) {
+        mDisplayId(-1), mName(name), mFd(fd) {
 #if DEBUG_CHANNEL_LIFECYCLE
     ALOGD("Input channel constructed: name='%s', fd=%d",
             mName.string(), fd);
@@ -225,6 +226,19 @@ sp<InputChannel> InputChannel::dup() const {
     return fd >= 0 ? new InputChannel(getName(), fd) : NULL;
 }
 
+/**
+ * Date: Apr 3, 2014
+ * Copyright (C) 2014 Tieto Poland Sp. z o.o.
+ *
+ * Use it wisely, because there is no error checking.
+ */
+void InputChannel::setDisplayId(int displayId) {
+    mDisplayId = displayId;
+}
+
+int InputChannel::getDisplayId() {
+    return mDisplayId;
+}
 
 // --- InputPublisher ---
 

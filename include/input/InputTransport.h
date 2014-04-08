@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2014 Tieto Poland Sp. z o.o.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -171,7 +172,17 @@ public:
     /* Returns a new object that has a duplicate of this channel's fd. */
     sp<InputChannel> dup() const;
 
+    /**
+     * Date: Apr 3, 2014
+     * Copyright (C) 2014 Tieto Poland Sp. z o.o.
+     *
+     * Setters and getters. Used only for monitors
+     */
+    void setDisplayId(int displayId);
+    int getDisplayId();
+
 private:
+    int mDisplayId;
     String8 mName;
     int mFd;
 };
